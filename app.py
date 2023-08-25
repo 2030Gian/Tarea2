@@ -17,13 +17,27 @@ anime = {"id":id, "titulo":"Dragon Ball",
 def list_animes():
     return list(anime.values())
 
-@app.route('/anime/<id>', methods = ['POST'])
+@app.route('/anime/<id>', methods = ['GET'])
+def list_anime():
+    pass
+
+@app.route('/anime/', methods = ['POST'])
 def create_anime():
     pass
+
+@app.route('/anime/<id>', methods = ['PUT'])
+def actualizar_parcial():
+    pass
+
+@app.route('/anime/<id>', methods = ['PATCH'])
+def actualizar_total():
+    pass
+
 
 @app.route('/anime/<id>', methods = ['DELETE'])
 def delete_anime():
     anime.clear()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
