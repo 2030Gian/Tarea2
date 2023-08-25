@@ -12,8 +12,9 @@ def index():
 @app.route('/anime', methods =['GET'])
 def crear_anime():
     u = uuid.uuid1()
-    anime = {"id":u, "titulo":"Dragon Ball", "puntaje":10, "tipo":"serie",
-  "season":"GIT","genero":"Action"}
+    anime = {"id":u, "titulo":"Dragon Ball",
+             "poster":"https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png",
+             "genero":"Action","rating":10000,"reviews":10,"season":"GIT","tipo":"serie"}
     
     print(list(anime.values()))
     
