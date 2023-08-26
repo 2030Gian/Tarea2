@@ -1,9 +1,10 @@
-from flask import Flask, request
+from flask import Flask
 
 import uuid
 
 app = Flask(__name__)
 
+# Controlador (API)
 @app.route('/', methods = ['GET'])
 def index():
     return '¡Hola, mundo! Esta es mi primera API con Flask y veremos animes.'
@@ -11,12 +12,12 @@ def index():
 id = uuid.uuid1()
 anime = {"id":id, "titulo":"Dragon Ball",
         "poster":"https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png",
-        "genero":"Action","rating":10000,"reviews":10,"season":"GIT","tipo":"serie"}    
-
-@app.route('/anime', methods =['GET'])
+        "genero":"Action","rating":10000,"reviews":10,"season":"GIT","tipo":"serie"} 
+   
+@app.route('/anime', methods = ['GET'])
 def list_animes():
-    return list(anime.values())
-
+    return anime
+'''
 @app.route('/anime/<id>', methods = ['GET'])
 def list_anime():
     pass
@@ -37,7 +38,7 @@ def actualizar_total():
 @app.route('/anime/<id>', methods = ['DELETE'])
 def delete_anime():
     anime.clear()
-
+'''
 
 if __name__ == '__main__':
     app.run(debug=True)
