@@ -25,9 +25,11 @@ def list_anime(anime_id):
 
 @app.route('/anime/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['POST'])
 def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
-    new_anime = {"titulo":anime_titulo,"poster":anime_poster,"genero":anime_genero, "rating":anime_rating,"reviews":anime_reviews,"season":anime_season,"tipo":anime_tipo}
+    new_anime = {"id":id,"titulo":anime_titulo,"poster":anime_poster,"genero":anime_genero, "rating":anime_rating,"reviews":anime_reviews,"season":anime_season,"tipo":anime_tipo}
     anime.append(new_anime)
     return "Agregado exitosamente"
+
+
 '''
 @app.route('/anime/<id>', methods = ['PUT'])
 def actualizar_parcial():
