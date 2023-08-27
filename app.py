@@ -1,3 +1,4 @@
+# Configuración
 from flask import Flask
 
 import uuid
@@ -30,15 +31,23 @@ def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_revie
     return "Agregado exitosamente"
 
 
-'''
-@app.route('/anime/<id>', methods = ['PUT'])
+
+@app.route('/anime/<id>/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['PUT'])
+def actualizar_total(anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
+    anime[id]['titulo'] = anime_titulo
+    anime[id]['poster'] = anime_poster
+    anime[id]['genero'] = anime_genero
+    anime[id]['rating'] = anime_rating
+    anime[id]['reviews'] = anime_reviews
+    anime[id]['season'] = anime_season
+    anime[id]['tipo'] = anime_tipo
+    return 'Actualizado correctamente!!!'
+
+@app.route('/anime/<id>', methods = ['PATCH'])
 def actualizar_parcial():
     pass
 
-@app.route('/anime/<id>', methods = ['PATCH'])
-def actualizar_total():
-    pass
-
+'''
 
 @app.route('/anime/<id>', methods = ['DELETE'])
 def delete_anime():
