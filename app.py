@@ -52,12 +52,10 @@ def actualizar_total(id,anime_titulo,anime_poster,anime_genero,anime_rating,anim
 def actualizar_parcial():
     pass
 
-'''
-
-@app.route('/anime/<id>', methods = ['DELETE'])
-def delete_anime():
-    anime.clear()
-'''
+@app.route('/anime/<int:id>', methods = ['DELETE'])
+def delete_anime(id):
+    anime.pop(id)
+    return "Eliminado exitosamente"
 print(id)
 print(anime[0]['titulo'])
 print(anime[0]['poster'])
