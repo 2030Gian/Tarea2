@@ -37,15 +37,15 @@ def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_revie
 @app.route('/anime/<string:id>/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['PUT'])
 def actualizar_total(id,anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
 
-    for i in anime:
-       if  anime[i]['id'] == id:
-        anime[id]['titulo'] = anime_titulo
-        anime[id]['poster'] = anime_poster
-        anime[id]['genero'] = anime_genero
-        anime[id]['rating'] = anime_rating
-        anime[id]['reviews'] = anime_reviews
-        anime[id]['season'] = anime_season
-        anime[id]['tipo'] = anime_tipo
+   for i in anime:
+    if i["id"] == id:
+        i['titulo'] = anime_titulo
+        i['poster'] = anime_poster
+        i['genero'] = anime_genero
+        i['rating'] = anime_rating
+        i['reviews'] = anime_reviews
+        i['season'] = anime_season
+        i['tipo'] = anime_tipo  
     return 'Actualizado correctamente!!!'
 
 @app.route('/anime/<id>', methods = ['PATCH'])
@@ -58,7 +58,14 @@ def actualizar_parcial():
 def delete_anime():
     anime.clear()
 '''
-
+print(id)
+print(anime[0]['titulo'])
+print(anime[0]['poster'])
+print(anime[0]['genero'])
+print(anime[0]['rating'])
+print(anime[0]['reviews'])
+print(anime[0]['season'])
+print(anime[0]['tipo'])
 if __name__ == '__main__':
     app.run(debug=True)
 
