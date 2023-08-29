@@ -35,10 +35,7 @@ def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_revie
 @app.route('/anime/<string:id>/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['PUT'])
 def actualizar_total(id,anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
 
-    print(id)
-   
     for i in anime:
-        print(i["id"])
         if str(i["id"]) == id:
             i["titulo"] = anime_titulo
             i["poster"] = anime_poster
@@ -50,10 +47,27 @@ def actualizar_total(id,anime_titulo,anime_poster,anime_genero,anime_rating,anim
             return 'Actualizado correctamente!!!'
     return 'No se encontró el anime!!' 
 
-@app.route('/anime/<id>', methods = ['PATCH'])
-def actualizar_parcial():
-    pass
-
+@app.route('/anime/<string:id>/<string:anime_titulo>/<int:bool_titulo>/<string:anime_poster>/<int:bool_poster>/<string:anime_genero>/<int:bool_genero>/<int:anime_rating>/<int:bool_rating>/<int:anime_reviews>/<int:bool_reviews>/<string:anime_season>/<int:bool_season>/<string:anime_tipo>/<int:bool_tipo>', methods = ['PATCH'])
+def actualizar_parcial(id,anime_titulo,bool_titulo,anime_poster,bool_poster, anime_genero, bool_genero, anime_rating, bool_rating, anime_reviews, bool_reviews, anime_season, bool_season,anime_tipo, bool_tipo):
+    for i in anime:
+        if str(i["id"]) == id:
+            if bool_titulo == 1:
+                i["titulo"] = anime_titulo
+            if bool_poster == 1:
+                i["poster"] = anime_poster
+            if bool_genero == 1:
+                i["genero"] = anime_genero
+            if bool_rating == 1:
+                i["rating"] = anime_rating
+            if bool_reviews == 1:
+                i["reviews"] = anime_reviews
+            if bool_season == 1:
+                i["season"] = anime_season
+            if bool_tipo == 1:
+                i["tipo"] = anime_tipo 
+            return 'Actualizado correctamente!!!'
+    return 'No se encontró el anime!!' 
+    
 @app.route('/anime/<int:id>', methods = ['DELETE'])
 def delete_anime(id):
     anime.pop(id)
