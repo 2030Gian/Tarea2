@@ -15,7 +15,8 @@ id = uuid.uuid1()
 anime = [{"id":id, "titulo":"Dragon Ball",
         "poster":"https://s4.anilist.co/file/anilistcdn/user/avatar/large/default.png",
         "genero":"Action","rating":10000,"reviews":10,"season":"GIT","tipo":"serie"}]
-   
+
+
 @app.route('/anime', methods = ['GET'])
 def list_animes():
     return anime
@@ -24,7 +25,6 @@ def list_animes():
 def list_anime(anime_id):
     return anime[anime_id]
 
-
 @app.route('/anime/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['POST'])
 def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
     id = uuid.uuid1()
@@ -32,21 +32,23 @@ def create_anime(anime_titulo,anime_poster,anime_genero,anime_rating,anime_revie
     anime.append(new_anime)
     return "Agregado exitosamente"
 
-
-
 @app.route('/anime/<string:id>/<string:anime_titulo>/<string:anime_poster>/<string:anime_genero>/<int:anime_rating>/<int:anime_reviews>/<string:anime_season>/<string:anime_tipo>', methods = ['PUT'])
 def actualizar_total(id,anime_titulo,anime_poster,anime_genero,anime_rating,anime_reviews,anime_season,anime_tipo):
 
-   for i in anime:
-    if i["id"] == id:
-        i['titulo'] = anime_titulo
-        i['poster'] = anime_poster
-        i['genero'] = anime_genero
-        i['rating'] = anime_rating
-        i['reviews'] = anime_reviews
-        i['season'] = anime_season
-        i['tipo'] = anime_tipo  
-    return 'Actualizado correctamente!!!'
+    print(id)
+   
+    for i in anime:
+        print(i["id"])
+        if str(i["id"]) == id:
+            i["titulo"] = anime_titulo
+            i["poster"] = anime_poster
+            i["genero"] = anime_genero
+            i["rating"] = anime_rating
+            i["reviews"] = anime_reviews
+            i["season"] = anime_season
+            i["tipo"] = anime_tipo  
+            return 'Actualizado correctamente!!!'
+    return 'No se encontró el anime!!' 
 
 @app.route('/anime/<id>', methods = ['PATCH'])
 def actualizar_parcial():
@@ -56,14 +58,7 @@ def actualizar_parcial():
 def delete_anime(id):
     anime.pop(id)
     return "Eliminado exitosamente"
-print(id)
-print(anime[0]['titulo'])
-print(anime[0]['poster'])
-print(anime[0]['genero'])
-print(anime[0]['rating'])
-print(anime[0]['reviews'])
-print(anime[0]['season'])
-print(anime[0]['tipo'])
+
 if __name__ == '__main__':
     app.run(debug=True)
 
