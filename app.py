@@ -68,10 +68,15 @@ def actualizar_parcial(id,anime_titulo,bool_titulo,anime_poster,bool_poster, ani
             return 'Actualizado correctamente!!!'
     return 'No se encontró el anime!!' 
     
-@app.route('/anime/<int:id>', methods = ['DELETE'])
+@app.route('/anime/<string:id>', methods = ['DELETE'])
 def delete_anime(id):
-    anime.pop(id)
-    return "Eliminado exitosamente"
+    for i in anime:
+        if str(i["id"]) == id:
+            i.clear()
+            return "Eliminado exitosamente!!!"
+    return "No se encontró el anime!!"
+            
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
